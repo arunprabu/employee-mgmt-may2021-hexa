@@ -1,0 +1,110 @@
+<nav>
+  <p>Data received from Child Comp: {{dataReceivedFromChildComp}}</p>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active"  data-bs-toggle="tab" data-bs-target="#basic-databinding" type="button" 
+      role="tab" aria-controls="basic-databinding" aria-selected="true">Basic Data Binding</button>
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cpb-tab" role="tab" aria-controls="cpb-tab" type="button" 
+      aria-selected="false">Custom Prop Binding</button>
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#ceb-tab" role="tab" aria-controls="ceb-tab" type="button" 
+      aria-selected="false">Child to Parent Comp Communication</button>
+    <button class="nav-link" data-bs-toggle="tab" 
+      data-bs-target="#directives-tab" role="tab" aria-controls="directives-tab" type="button" 
+      aria-selected="false">Directives</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+
+  <div class="tab-pane fade show active" id="basic-databinding" role="tabpanel"
+    aria-labelledby="basic-databinding-tab">
+    <h2>Basic Data Binding</h2>
+
+    <h4>Interpolation</h4>
+    <p>{{ appName }}</p>
+    <input type="text" value="{{appName}}">
+
+    <hr >
+    <h4>Property Binding</h4>
+    <p [title]="companyName">Mouseover to see the company Name</p>
+    <input type="text" [value]="companyName">
+  
+    <hr>
+    <h4>Event Binding</h4>
+    <button type="button" class="btn btn-primary" 
+    (click)="handleClickMe($event)">Click me</button>
+
+    <hr>
+    <h4>Two Way Binding</h4>
+    <p>Course Name: {{course}}</p> <!-- SI-->
+    <input type="text" [value]="course"> <!-- PB-->
+    <br><br>
+    <input type="text" [(ngModel)]="course"> <!-- Two Way Binding -->
+
+  </div>
+
+  <div class="tab-pane fade" id="cpb-tab" role="tabpanel" aria-labelledby="cpb-tab-tab">
+    <h2>Custom Property Binding -- Parent to Child Comp Communication</h2>
+    <!-- Step 2: implement custom prop binding on age and pass the data to the child comp -->
+    <app-cpb></app-cpb>
+    <app-cpb [age]="20"></app-cpb>
+    <app-cpb [age]="30"></app-cpb>
+    <app-cpb [age]="40"></app-cpb>
+    <app-cpb [age]="myAge"></app-cpb>
+  </div>
+
+  <div class="tab-pane fade" id="ceb-tab" role="tabpanel" aria-labelledby="ceb-tab-tab">
+    <h2>Child to Parent Comp Communication</h2>
+    <!-- Step 5 of CEB: Let's handle the custom event-->
+    <app-ceb (profileLoaded)="handleProfileLoaded($event)"></app-ceb>
+  </div>
+
+  <div class="tab-pane fade" id="directives-tab" role="tabpanel"
+    aria-labelledby="directives-tab">
+    <h2>Directives</h2>
+    <pre>
+      Directives
+      -----
+        Spl instructions to the DOM
+
+        1. Attribute Directives
+            Examples: routerLink, routerLinkActive
+
+        2. Structural Directives
+            Impact of these directives will be on structural layer (html)
+            *ngIf, *ngFor, ngSwitch 
+
+        3. Custom Attribute Directives
+
+
+        4. Custom Structural Directives 
+    </pre>
+
+    <h4>*ngIf - Demo</h4>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn; else NotAuthBox">
+      Thank you for logging in. You can access premium features of the app
+    </div>
+    <ng-template #NotAuthBox>
+      <div class="alert alert-danger">
+        You are not authenticated. Pls login.
+      </div>    
+    </ng-template>
+
+    <h4>*ngFor - Demo</h4>
+    <ul>
+      <li *ngFor="let skill of skillList">{{skill}}</li>
+    </ul>
+    <!-- TODO: learn about finding index in *ngFor -->
+
+    <!-- TODO: Learn about ngSwitch -->
+
+    <h4>Custom Attribute Directive - colorizer directive demo</h4>
+    <p>ng g d concepts/directives/colorizer</p>
+
+    <div appColorizer>
+      Colorizer directive - Demo
+    </div>
+
+  </div>
+
+
+</div>
