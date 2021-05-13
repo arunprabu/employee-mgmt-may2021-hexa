@@ -17,6 +17,7 @@ import { ColorizerDirective } from './concepts/directives/colorizer.directive';
 import { EmployeesModule } from './employees/employees.module';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { ProductsModule } from './products/products.module';
+import { EllipsisPipe } from './shared/pipes/ellipsis.pipe';
 
 // Main Switching Box
 @NgModule({
@@ -32,6 +33,7 @@ import { ProductsModule } from './products/products.module';
     CebComponent,
     ColorizerDirective,
     PageNotFoundComponent,
+    EllipsisPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,36 @@
-<p>about works!</p>
+<div class="container">
+  <pre>
+    Pipes 
+    ---
+      Transform information from one format to another 
+
+      1. Impure Pipes 
+      2. Pure Pipes 
+
+      Built-in Pipes 
+      
+      Custom Pipes 
+  </pre>
+
+  <p>{{today}}</p>
+
+  <p>{{today | date }}</p>
+
+  <!-- Parameterised Pipe -->
+  <p>{{today | date: 'MMMM/dd/yyyy hh:mm:ss a' }}</p>
+
+  <!-- Chaining Pipes -->
+  <p>{{today | date: 'yyyy-MMMM-dd hh:mm:ss a' | uppercase }}</p>
+
+  <hr>
+  <p>{{randomText}}</p>
+  <p>{{randomText | uppercase }}</p>
+
+  <hr >
+  <p>Using Ellipsis Pipe -- Custom Pipe -- ng g p shared/pipes/ellipsis </p>
+  <p>{{randomText }}</p>
+  <p>{{randomText | ellipsis }}</p>
+  <p>{{randomText | ellipsis: 20 }}</p>
+
+  <p>{{randomText | ellipsis: 30 }}</p>
+</div>
