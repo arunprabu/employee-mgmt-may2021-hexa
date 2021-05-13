@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IEmployee } from '../../models/iemployee';
 import { EmployeeService } from '../../services/employee.service';
 
 @Component({
@@ -10,8 +11,8 @@ import { EmployeeService } from '../../services/employee.service';
 })
 export class EmployeeDetailsComponent implements OnInit {
 
-  employeeData: any;
-  duplicateEmployeeData: any;
+  employeeData: IEmployee = {};
+  duplicateEmployeeData: IEmployee = {};
   isUpdated = false;
 
   constructor(private employeeService: EmployeeService, private route: ActivatedRoute) {
@@ -22,7 +23,7 @@ export class EmployeeDetailsComponent implements OnInit {
     // Read URL Param in angular
     const empId = this.route.snapshot.paramMap.get('empId');
     this.employeeService.getEmployeeById(empId)
-      .subscribe((res: any) => {
+      .subscribe((res: IEmployee) => {
         console.log(res);
         this.employeeData = res;
       });

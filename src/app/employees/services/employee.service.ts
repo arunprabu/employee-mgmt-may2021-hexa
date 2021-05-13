@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { IEmployee } from '../models/iemployee';
+import { Observable } from 'rxjs';
 
 // Decorator
 @Injectable({
@@ -25,7 +27,7 @@ export class EmployeeService {
       }));
   }
 
-  getEmployees(): any { // 1. get the req from the comp
+  getEmployees(): Observable<IEmployee[]> { // 1. get the req from the comp
     console.log('Inside Service');
 
     // 2. send the req to the REST API
@@ -36,17 +38,17 @@ export class EmployeeService {
       .pipe(map((res: any) => { // 3. get the res from the REST API
         console.log(res);
         // sort, filter, removal, convert
-        return res; // 4. send the res to the comp
+        return res as IEmployee[]; // 4. send the res to the comp
       }));
   }
 
-  getEmployeeById(empId: string | null ): any {
+  getEmployeeById(empId: string | null ): Observable<IEmployee> {
     console.log(empId);
     const employeeDetailsAPI = 'http://jsonplaceholder.typicode.com/users/' + empId;
     return this.http.get(employeeDetailsAPI)
       .pipe(map((res: any) => {
         console.log(res);
-        return res;
+        return res as IEmployee;
       }));
   }
 
